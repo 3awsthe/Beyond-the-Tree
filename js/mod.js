@@ -6,7 +6,7 @@ let modInfo = {
 
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (1e2), // Used for hard resets and new players
+	initialStartPoints: new Decimal (0), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
 
@@ -47,10 +47,17 @@ function getPointGen() {
 	if(hasUpgrade("B",12))gain=gain.mul(3)
 	if(hasUpgrade("B",13))gain=gain.mul(10)
 	if(hasUpgrade("B",14))gain=gain.mul(upgradeEffect("B",14))
+	if(hasUpgrade("B",15))gain=gain.mul(5.5)
 	if(player.N.points.gte(1))gain=gain.mul(player.N.points.add(1)).mul(3.5)
 	if(hasUpgrade("N",11))gain=gain.mul(3)
+	if(hasUpgrade("N",12))gain=gain.mul(2)
+	if(hasUpgrade("N",13))gain=gain.mul(5)
 	if(player.A.points.gte(1))gain=gain.mul(player.A.points.add(1)).mul(8)
+	if(hasUpgrade("A",11))gain=gain.mul(10)
+	if(hasUpgrade("A",12))gain=gain.mul(3)
+	if(hasUpgrade("A",13))gain=gain.mul(3.5)
 	gain=gain.mul(softcap(player.T.points.add(1),new Decimal(1),0.985))
+	if(hasUpgrade("T",12))gain=gain.mul(upgradeEffect("T",12))
 	return gain
 }
 
