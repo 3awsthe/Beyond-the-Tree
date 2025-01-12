@@ -21,16 +21,26 @@ addLayer("A",{
 		let mult=new Decimal(1)
 		return mult
 	},
+	canBuyMax(){
+		if(hasMilestone("I",4))return true
+		else return false
+	},
+	autoUpgrade()
+	{
+		if(hasMilestone("I",6)&&player.I.c1.eq(0))return true
+		else return false
+	},
+	autoPrestige()
+	{
+		if(hasMilestone("I",10)&&player.I.c3.eq(0))return true
+		else return false
+	},
 	upgrades:
 	{
 		11:{
 			title:"真是不错的一步",
-			description:"源点增益 x10 (至少有 3 进阶以解锁)",
-			cost()
-			{
-				if(player.A.points.gte(3))return new Decimal(0)
-				else return new Decimal("1e114514")
-			},
+			description:"源点增益 x6.66",
+			cost:new Decimal(3),
 			unlocked()
 			{
 				if(hasUpgrade("T",11))return true
@@ -39,12 +49,8 @@ addLayer("A",{
 		},
 		12:{
 			title:"三步并做两步",
-			description:"源点增益 x2 (至少有 5 进阶以解锁)",
-			cost()
-			{
-				if(player.A.points.gte(5))return new Decimal(0)
-				else return new Decimal("1e114514")
-			},
+			description:"源点增益 x2",
+			cost:new Decimal(5),
 			unlocked()
 			{
 				if(hasUpgrade("T",11)&&hasUpgrade("A",11))return true
@@ -53,12 +59,8 @@ addLayer("A",{
 		},
 		13:{
 			title:"四步并做两步",
-			description:"源点增益 x3.5 (至少有 7 进阶以解锁)",
-			cost()
-			{
-				if(player.A.points.gte(7))return new Decimal(0)
-				else return new Decimal("1e114514")
-			},
+			description:"源点增益 x3.5",
+			cost:new Decimal(7),
 			unlocked()
 			{
 				if(hasUpgrade("T",13)&&hasUpgrade("A",12))return true

@@ -2,7 +2,7 @@ let modInfo = {
 	name: "Beyond the Tree",
 	author: "PriorityStack",
 	pointsName: "源点",
-	modFiles: ["Basic.js","Normal.js","Advanced.js","Thinking.js","tree.js"],
+	modFiles: ["Basic.js","Normal.js","Advanced.js","Thinking.js","Idea.js","tree.js"],
 
 	discordName: "",
 	discordLink: "",
@@ -43,6 +43,7 @@ function getPointGen() {
 		return new Decimal(0)
 	let gain=new Decimal(1)
 	gain=gain.mul(player.B.points.add(1))
+	if(hasUpgrade("B",16))gain=gain.mul(upgradeEffect("B",16))
 	if(hasUpgrade("B",11))gain=gain.mul(1.5)
 	if(hasUpgrade("B",12))gain=gain.mul(3)
 	if(hasUpgrade("B",13))gain=gain.mul(10)
@@ -53,11 +54,12 @@ function getPointGen() {
 	if(hasUpgrade("N",12))gain=gain.mul(2)
 	if(hasUpgrade("N",13))gain=gain.mul(5)
 	if(player.A.points.gte(1))gain=gain.mul(player.A.points.add(1)).mul(8)
-	if(hasUpgrade("A",11))gain=gain.mul(10)
+	if(hasUpgrade("A",11))gain=gain.mul(6.66)
 	if(hasUpgrade("A",12))gain=gain.mul(3)
 	if(hasUpgrade("A",13))gain=gain.mul(3.5)
 	gain=gain.mul(softcap(player.T.points.add(1),new Decimal(1),0.985))
 	if(hasUpgrade("T",12))gain=gain.mul(upgradeEffect("T",12))
+	gain=gain.mul(softcap(player.I.points.add(1).mul(4),new Decimal(1),0.92))
 	return gain
 }
 
