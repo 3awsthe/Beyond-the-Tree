@@ -12,7 +12,7 @@ addLayer("B",{
 	baseResource:"源点",
 	baseAmount(){return player.points},
 	resource:"基础",
-	exponent:1,
+	exponent:1.066,
 	type:"static",
 	requires:new Decimal(10),
 	gainMult()
@@ -65,10 +65,10 @@ addLayer("B",{
 		14:
 		{
 			title:"你一定很无聊吧",
-			description:"源点增益源点本身",
+			description:"源点增益源点本身 (至少有 15 基础以解锁)",
 			cost()
 			{
-				if(player.B.points.gte(10))return new Decimal(0)
+				if(player.B.points.gte(15))return new Decimal(0)
 				else return new Decimal("1e114514")
 			},
 			effect()
@@ -81,6 +81,21 @@ addLayer("B",{
 				if(hasUpgrade("B",13))return true
 				else return false
 			}
-		}
+		},
+		15:
+		{
+			title:"你就打算一直乘下去？！",
+			description:"源点增益 x5.5 (至少有 25 基础以解锁)",
+			cost()
+			{
+				if(player.B.points.gte(25))return new Decimal(0)
+				else return new Decimal("1e114514")
+			},
+			unlocked()
+			{
+				if(hasUpgrade("B",14)&&hasUpgrade("T",13))return true
+				else return false
+			}
+		},
 	}
 })

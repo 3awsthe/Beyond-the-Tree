@@ -13,7 +13,7 @@ addLayer("T",{
 	baseResource:"源点",
 	baseAmount(){return player.points},
 	resource:"思维",
-	exponent:2,
+	exponent:1.3,
 	type:"static",
 	requires:new Decimal(1e9),
 	gainMult()
@@ -31,7 +31,30 @@ addLayer("T",{
 				if(player.T.points.gte(2))return new Decimal(0)
 				else return new Decimal("1e114514")
 			}
-		}
+		},
+		12:{
+			title:"加速！！！",
+			description:"点数赠益点数本身 (至少有 5 思维以解锁)",
+			cost()
+			{
+				if(player.T.points.gte(5))return new Decimal(0)
+				else return new Decimal("1e114514")
+			},
+			effect()
+			{
+				return player.points.add(1).pow(0.15).min(200)
+			},
+			effectDisplay(){return "x"+format(upgradeEffect("T",12))}
+		},
+		13:{
+			title:"什么时候才到下一层",
+			description:"解锁更多升级 (至少有 8 思维以解锁)",
+			cost()
+			{
+				if(player.T.points.gte(8))return new Decimal(0)
+				else return new Decimal("1e114514")
+			}
+		},
 	},
 	layerShown()
 	{

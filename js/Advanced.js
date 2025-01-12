@@ -39,7 +39,7 @@ addLayer("A",{
 		},
 		12:{
 			title:"三步并做两步",
-			description:"源点增益 x10 (至少有 5 进阶以解锁)",
+			description:"源点增益 x2 (至少有 5 进阶以解锁)",
 			cost()
 			{
 				if(player.A.points.gte(5))return new Decimal(0)
@@ -48,6 +48,20 @@ addLayer("A",{
 			unlocked()
 			{
 				if(hasUpgrade("T",11)&&hasUpgrade("A",11))return true
+				else return false
+			}
+		},
+		13:{
+			title:"四步并做两步",
+			description:"源点增益 x3.5 (至少有 7 进阶以解锁)",
+			cost()
+			{
+				if(player.A.points.gte(7))return new Decimal(0)
+				else return new Decimal("1e114514")
+			},
+			unlocked()
+			{
+				if(hasUpgrade("T",13)&&hasUpgrade("A",12))return true
 				else return false
 			}
 		}
