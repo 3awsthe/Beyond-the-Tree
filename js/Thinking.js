@@ -23,15 +23,16 @@ addLayer("T",{
 	},
 	upgrades:
 	{
-		11:{
+		11:
+		{
 			title:"关键一步",
 			description:"解锁更多升级",
-			cost:new Decimal(2)
+			cost:new Decimal(1)
 		},
 		12:{
 			title:"加速！！！",
 			description:"点数赠益点数本身",
-			cost:new Decimal(5),
+			cost:new Decimal(2),
 			effect()
 			{
 				return player.points.add(1).pow(0.15).min(200)
@@ -41,7 +42,7 @@ addLayer("T",{
 		13:{
 			title:"什么时候才到下一层",
 			description:"解锁更多升级",
-			cost:new Decimal(8)
+			cost:new Decimal(4)
 		}
 	},
 	canBuyMax(){
